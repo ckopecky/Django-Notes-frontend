@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{% load i18n static %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/dashboard.css' %}">
+
+{% block title %}{{ title }} | {{ site_title|default:_('Hello World') }}{% endblock %}
+
+{% block branding %}
+<h1 class="site-name"><a href="{% url 'admin:index' %}">Polls administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

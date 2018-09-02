@@ -14,6 +14,10 @@ class Question(models.Model):
         now = timezone.now()
         return now - timedelta(days=1) <= self.pub_date <= now
         
+    published_recently.admin_order_field = 'pub_date'
+    published_recently.boolean = True
+    published_recently.short_description = 'Published Recently?'
+    
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)

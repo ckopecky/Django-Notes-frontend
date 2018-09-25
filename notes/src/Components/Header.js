@@ -10,7 +10,7 @@ class Header extends Component {
           <h1 className="title">Lambda-Django Notes</h1>
         </header>
         <p className="intro">
-          To get started, enter <Link className="header-link" to='/notes'>here</Link>
+          To get started, enter <Link className="header-link" to='/login'>here</Link>
         </p>
       </div>
     );

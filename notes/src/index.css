@@ -41,11 +41,11 @@ body {
 }
 
 .house-pic {
-  width:50px;
+  width:100px;
   height:auto;
   transform: rotate(-30deg);
   margin-top:150px;
-  margin-left: 150px;
+  margin-left: 200px;
 }
 .create-link {
 display:flex;
@@ -103,4 +103,8 @@ text-decoration: underline;
   justify-content: center;
   text-align: center;
   margin-bottom: 100px;
+}
+
+.register-line {
+  font-size: 10px;
 }

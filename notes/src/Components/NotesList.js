@@ -13,37 +13,45 @@ class NotesList extends Component {
     }
 
     componentDidMount() {
-        let promise = axios.get(`http://localhost:8000/api/notes`);
+        const token = localStorage.getItem('token');
+
+        // attach the token as the Authorization header
+        const requestOptions = {
+          headers: {
+            Authorization: token,
+          },
+        };
+        let promise = axios.get(`http://localhost:8000/api/notes`, requestOptions);
         promise.then((response) => {
-            const notes = response.data
-            console.log("CDM notes", notes);
+            console.log("CDM notes", response.data);
             this.setState({
-                notes: notes
+                notes: response.data
             });
             })
             .catch((error) => {
                 console.error(error);
             })
     }
-    render() {
-        console.log(this.state.notes);
-        return (
+    render(){
+        {!localStorage.getItem("token") &&
+        <div className="main-container"><Link className="link-style" to="/login">Please Sign in to access list of notes</Link></div>}
+        return(
             <div>
-                <div className="home-link"><Link exact to="/">
-                <img className="house-pic"src={house} alt="home"/></Link></div>
-                <div className="main-note-container">
-                    {this.state.notes.map(note => {
-                        return (
-                            <div key={note.id} className="note-indiv">
-                                <h1>{note.title}</h1>   
-                                <p>{note.content}</p>
-                            </div>              )
-                    })}
-                </div>
-                <div><Link to="/create"><h4 className="create-link">2 + 2 = 5</h4></Link></div>
+            <img src={house} alt="house" className="house-pic"/>
+            <ul className="collection-of-notes">
+                {this.state.notes.map(note => {
+                return(
+                <li className="indiv-note" key={note._id}>
+                    <h4><strong>{note.title}</strong></h4>
+                    <p>{note.content}</p>
+                </li>
+                )}
+                )}
+            </ul>
             </div>
-        );
-    }
+        )}
 }
+        
+
 
 export default NotesList;
